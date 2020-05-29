@@ -1,8 +1,5 @@
 FROM akito13/alpine AS build
 
-LABEL maintainer="Akito <the@akito.ooo>"
-LABEL version="0.1.0"
-
 ARG TAG="v1.3.9"
 ARG BRANCH="master"
 
@@ -19,5 +16,10 @@ RUN git clone https://github.com/rhash/RHash.git /root/rhash && \
     ./configure --enable-openssl --enable-static --disable-openssl-runtime && \
     make
 
-FROM akito13/alpine
+FROM alpine:edge
+
+LABEL maintainer="Akito <the@akito.ooo>"
+LABEL version="0.1.0"
+
 COPY --from=build /root/rhash/rhash /usr/bin/rhash
+ENTRYPOINT [ "/usr/bin/rhash" ]

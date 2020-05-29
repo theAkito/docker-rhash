@@ -7,6 +7,8 @@
 ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/rhash?style=plastic)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/rhash?style=plastic)
 
+[![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/rhash/RHash)
+
 ![GitHub](https://img.shields.io/badge/license-GPL--3.0-informational?style=plastic)
 ![Liberapay patrons](https://img.shields.io/liberapay/patrons/Akito?style=plastic)
 
@@ -24,7 +26,7 @@ Rhash is a CLI utility for computing a wide variety of hashes and checksums. See
 ## How
 Recommended way of usage:
 ```bash
-alias rhash='docker run --rm -it -v "$(pwd):$(pwd)" -w "$(pwd)" akito13/rhash rhash '
+alias rhash='docker run --rm -it -v "$(pwd):$(pwd)" -w "$(pwd)" akito13/rhash '
 ```
 Now run the `rhash` command as you would always do:
 ```bash
