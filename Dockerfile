@@ -21,5 +21,5 @@ FROM alpine:edge
 LABEL maintainer="Akito <the@akito.ooo>"
 LABEL version="0.1.0"
 
-COPY --from=build /root/rhash/rhash /usr/bin/rhash
-ENTRYPOINT [ "/usr/bin/rhash" ]
+COPY --from=build /root/rhash/rhash /rhash
+ENTRYPOINT [ "/rhash" ]

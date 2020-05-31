@@ -26,8 +26,28 @@ Rhash is a CLI utility for computing a wide variety of hashes and checksums. See
 ## How
 Recommended way of usage:
 ```bash
-alias rhash='docker run --rm -it -v "$(pwd):$(pwd)" -w "$(pwd)" akito13/rhash '
+function rhash {
+  local cmd="$@"
+  shift
+  local args=( $@ )
+  local file_path
+  for arg in ${args[@]}; do
+    if ! [[ "${arg}" =~ ^[-]|^[/] ]]; then
+      file_path="$(pwd)"
+      break
+    elif [[ "${arg}" =~ ^[/] ]]; then
+      file_path="$(printf '%s' "${arg%/*}")"
+      break
+    fi
+  done
+  docker run --rm -it --mount \
+             type=bind,source="${file_path}",target="${file_path}",readonly \
+             -w "${file_path}" akito13/rhash ${cmd}
+}
 ```
+Append the above function to your `~/.bashrc` for example \
+and activate it with `source ~/.bashrc`.
+
 Now run the `rhash` command as you would always do:
 ```bash
 rhash --uppercase --sha512 Dockerfile
